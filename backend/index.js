@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const userRoutes = require( './src/routes/Users')
 const PORT = process.env.PORT || 5000
 
 dotenv.config();
@@ -24,14 +25,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-// Test Method
-app.get('/api/set/test', async (req, res) => {
-    console.log('test');
-    res.send('Test endpoint');
-});
-
+app.use("/api/users", userRoutes)
 
 // Listen config
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });
+ 
