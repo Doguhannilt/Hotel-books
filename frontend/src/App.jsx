@@ -11,13 +11,12 @@ function App() {
   return (
     <Router>
       <Routes>
+      
        <Route path="/" element={<Layout></Layout>}/>
        <Route path="/search"  element={<>Search Page</>}/>
        <Route path="*"  element={<Navigate to = "/" />}/>
-       <Route path= "/register" element = 
-       {
-       <Layout><Register/> </Layout>
-       } />
+       <Route path= "/register" element = {<Layout><Register/></Layout>}/>
+      
       </Routes>
     </Router>
   )

@@ -23,7 +23,7 @@ router.post("/register",[
         const user = await UserModel.findOne({
             email: req.body.email,
         });
-            console.log("🚀 ~ router.post ~ email:", email)
+           
 
         if (user) {
             return res.status(400).json({ message: "User Already Exists" });

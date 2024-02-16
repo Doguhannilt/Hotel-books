@@ -30,7 +30,7 @@ app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
 
 // Listen config
-app.listen(PORT, () => {
+app.listen(7000, () => {
     console.log(`Server started on port ${PORT}`);
 });
  
