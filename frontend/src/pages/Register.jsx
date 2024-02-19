@@ -3,17 +3,41 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import {useMutation} from 'react-query'
 import * as apiClient from '../api-client'
+import { useToast } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
   console.log("Register page loaded");
 
+  const navigate = useNavigate()
+
   const {register, watch, handleSubmit, formState: {errors}} = useForm();
+  const toast = useToast()
+  const mutation = useMutation(apiClient.register, {
+  onSuccess: () => {
+    // Success
 
-
-
- const mutation = useMutation(apiClient.register, {
-  onSuccess: () => {console.log("registration succesful!")},
-  onError: (err) => {console.log(err.message)}});
+    toast({
+      title: 'Account created.',
+      description: "We've created your account for you.",
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+    })
+    navigate("/")
+  },
+  onError: (err) => {
+    
+    // Error 
+    toast({
+      title: 'Account is not created.',
+      description: "Something went wrong :(.",
+      status: 'error',
+      duration: 9000,
+      isClosable: true,
+    })
+  
+  }});
 
   const onSubmit = handleSubmit((data)=>{
     mutation.mutate(data)
