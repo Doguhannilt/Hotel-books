@@ -4,6 +4,7 @@ const UserModel = require('../models/model');
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
+const verifyToken  = require('../middleware/auth');
 
 
 router.post("/login", [ 
@@ -58,6 +59,10 @@ router.post("/login", [
             res.status(500).json({message: "Something went wrong :("})
         }
 
+    })
+
+    router.get("/validate-token", verifyToken, (req, res) => {
+        res.status(200).send({userId: req.userId})
     })
 
 module.exports = router;

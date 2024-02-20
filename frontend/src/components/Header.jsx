@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+//import { useSelector } from 'react-redux'; 
 
 const Header = () => {
+  // const isLogged = useSelector(state => state.logger);
   return (
     
     <div className="bg-sky-500/90 py-6">
@@ -14,13 +16,9 @@ const Header = () => {
        </span>
 
         <span className = "flex space-x-2">
-        <Link
-          to="/sign-in"
-          className="flex bg-white items-center text-blue-600 px-3 font-bold hover:bg-gray-100"
-        >
-          Sign In
-        </Link>
-        </span>
+
+
+          </span>
       </div>
     </div>
   );

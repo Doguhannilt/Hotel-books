@@ -1,8 +1,11 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+console.log("api-client started")
 export const register = async (formData) => {
     const response = await fetch(`${API_BASE_URL}/api/users/register`, {
-        method: 'POST',
+        method: "POST",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json"
         },
@@ -14,3 +17,6 @@ export const register = async (formData) => {
 
     if(!response.ok){throw new Error(responseBody.message)}
 }
+
+
+

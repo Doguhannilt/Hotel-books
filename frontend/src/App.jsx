@@ -15,7 +15,7 @@ function App() {
        <Route path="/" element={<Layout></Layout>}/>
        <Route path="/search"  element={<>Search Page</>}/>
        <Route path="*"  element={<Navigate to = "/" />}/>
-       <Route path= "/register" element = {<Layout><Register/></Layout>}/>
+       <Route path= "/users/register" element = {<Layout><Register/></Layout>}/>
       
       </Routes>
     </Router>

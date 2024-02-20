@@ -43,6 +43,7 @@
     "content-type": "^1.0.5",
     "convert-source-map": "^2.0.0",
     "cookie": "^0.5.0",
+    "cookie-parser": "^1.4.6",
     "cookie-signature": "^1.0.6",
     "cors": "^2.8.5",
     "cross-spawn": "^7.0.3",
