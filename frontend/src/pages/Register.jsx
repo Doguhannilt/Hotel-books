@@ -28,7 +28,7 @@ const Register = () => {
       password
     }).then(response => {
       console.log(response)
-      navigation("/login")
+      navigation("/users/login")
     }).catch(err => {
       console.log(err)
     })
