@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import Axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useToast } from '@chakra-ui/react'
 
 const Login = () => { 
   const [email, setEmail] = useState(" ");
@@ -22,9 +23,12 @@ const Login = () => {
       email,
       password
     }).then(response => {
+
       console.log(response)
       navigation("/home")
     }).catch(err => {
+
+
       console.log(err)
     })
   }
@@ -32,7 +36,7 @@ const Login = () => {
 
   return (
     <div>
-    <form onSubmit={handleSubmit} className="mx-auto max-w-md flex flex-col gap-5 mt-10">
+    <form onSubmit={handleSubmit} className="mx-auto max-w-md flex flex-col gap-5 mt-40">
       <h2 className="text-3xl font-bold">Log in</h2>
       
 
@@ -62,15 +66,19 @@ const Login = () => {
         />
         {errors.password && <span className="text-red-500">{errors.password.message}</span>}
       </label>
-     
+      <div className = "flex gap-48 ">
       <span>
         <button
           type="submit"
-          className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 txt-xl"
+          className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-800 txt-2xl"
         >
           Log in
         </button>
-      </span>
+      </span> 
+      <span>
+            <label className = "text-blue-600 hover:text-blue-800"><Link to={"/users/register"}>Don't you sign up yet?</Link></label>
+        </span>
+        </div>
     </form>
   </div>
   )

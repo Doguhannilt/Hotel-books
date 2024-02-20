@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useToast } from '@chakra-ui/react';
 
 
 const Register = () => {
@@ -9,7 +10,7 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const toast = useToast()
   const navigation = useNavigate()
 
   const {
@@ -27,15 +28,29 @@ const Register = () => {
       email,
       password
     }).then(response => {
+      toast({
+        title: 'Your account is created',
+        description: 'Did you know that I am in love with Turkish Coffee.',
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      }),
       console.log(response)
       navigation("/users/login")
     }).catch(err => {
+      toast({
+        title: 'An error occurred.',
+        description: 'Unable to create user account.',
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      }),
       console.log(err)
     })
   }
   return (
     <div>
-      <form onSubmit={handleSubmit} className="mx-auto max-w-md flex flex-col gap-5 mt-10">
+      <form onSubmit={handleSubmit} className="mx-auto max-w-md flex flex-col gap-5 mt-16">
         <h2 className="text-3xl font-bold">Create an Account</h2>
         <div className="flex flex-col md:flex-row gap-5">
           {/* First Name */}
@@ -101,14 +116,20 @@ const Register = () => {
             <span className="text-red-500">{errors.confirmPassword.message}</span>
           )}
         </label>
+        <div className = "flex gap-24 ">
         <span>
           <button
             type="submit"
-            className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 txt-xl"
+            className="bg-blue-600 text-white p-2 font-bold txt-xl hover:bg-blue-800"
           >
             Create an account
           </button>
         </span>
+
+        <span>
+            <label className = "text-blue-600 hover:text-blue-800"><Link to={"/auth/login"}>Do you have an account?</Link></label>
+        </span>
+        </div>
       </form>
     </div>
   );
