@@ -32,19 +32,15 @@ router.post("/register",[
         const newUser = new UserModel(req.body);
         await newUser.save();
         
-        // After registration is accomplished, token will be created
-        const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET_KEY);
+        try {
         
+            // Success and sending a message about it
+            return res.status(201).json({ message: "User registered successfully" });
+        } catch (error) {
+           
+            res.status(500).send({ message: "Something went wrong :(" });
+        }
         
-        // Token will be sent to the user
-        res.cookie("auth_token", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            maxAge: 86400000
-        });
-
-        // Success and sending a message about it
-        return res.status(201).json({ message: "User registered successfully" });
     } catch (err) {
         console.log(err);
         res.status(500).send({ message: "Something went wrong :(" });

@@ -36,7 +36,7 @@ const Register = () => {
         isClosable: true,
       }),
       console.log(response)
-      navigation("/users/login")
+      navigation("/auth/login")
     }).catch(err => {
       toast({
         title: 'An error occurred.',

@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react'
 
 const Login = () => { 
+
   const [email, setEmail] = useState(" ");
   const [password, setPassword] = useState(" ");
 
@@ -17,6 +18,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  Axios.defaults.withCredentials = true
   const handleSubmit = (e) => {
     e.preventDefault()
     Axios.post('http://localhost:7000/auth/login', {
@@ -32,7 +34,6 @@ const Login = () => {
       console.log(err)
     })
   }
-
 
   return (
     <div>
