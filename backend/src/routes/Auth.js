@@ -42,12 +42,9 @@ router.post("/login", [
                 httpOnly: true,
                 maxAge: 86400000
             })
-            
-
             res.status(200).json({ userId: user._id })
-            console.log(`Your token is ${token}` )
         } catch (err) {
-            console.log(err)
+            console.log(`Something wrong with Auth -> ${err}`)
             res.status(500).json({message: "Something went wrong :("})
         }
     })

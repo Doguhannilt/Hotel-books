@@ -8,13 +8,10 @@ const Login = () => {
 
   const [email, setEmail] = useState(" ");
   const [password, setPassword] = useState(" ");
-
   const navigation = useNavigate()
-
   const {
     register,
     watch,
-
     formState: { errors },
   } = useForm();
 
@@ -25,13 +22,9 @@ const Login = () => {
       email,
       password
     }).then(response => {
-
-      console.log(response)
       navigation("/home")
     }).catch(err => {
-
-
-      console.log(err)
+      console.log(`Login error: ${err}`)
     })
   }
 

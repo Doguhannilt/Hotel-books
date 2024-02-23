@@ -35,7 +35,6 @@ const Register = () => {
         duration: 9000,
         isClosable: true,
       }),
-      console.log(response)
       navigation("/auth/login")
     }).catch(err => {
       toast({
@@ -45,7 +44,7 @@ const Register = () => {
         duration: 9000,
         isClosable: true,
       }),
-      console.log(err)
+      console.log(`Registration error -> ${err}`)
     })
   }
   return (

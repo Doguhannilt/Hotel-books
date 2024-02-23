@@ -27,6 +27,28 @@ const Header = () => {
 
     checkTokenValidity();
   }, []);
+
+  // Logout 
+const handleLogout = async () => {
+  try {
+    const response = await Axios.post(
+      'http://localhost:7000/logout',
+      {},
+      {
+        withCredentials: true
+      }
+    );
+    console.log(response.data.message); // Success message
+    
+    // If it's succesful
+    setIsLoggedIn(false);
+  } catch (error) {
+    console.error('Logout failed:', error);
+  }
+};
+
+
+
   return (
     <div>
       <span className="">
@@ -43,14 +65,16 @@ const Header = () => {
             className="flex bg-sky-500/90 items-center  px-3 font-bold hover:bg-gray-100">
               Settings
             </Link>
-            <button  
+            <button  to={"users/register"}
+             onClick={handleLogout}
             className="flex bg-sky-500/90 items-center px-3 font-bold hover:bg-gray-100">
-              Logouts
+              Log out
             </button></div>
           </>
         ) : (
           <Link 
-          to="/sign-in" 
+          to={"users/register"} 
+         
           className="flex bg-sky-500/90 items-center px-3 font-bold hover:bg-gray-100">
             Sign In
           </Link>
