@@ -27,6 +27,7 @@ const PORT = process.env.PORT || 5000
 const logoutRoutes = require('./src/routes/Logout')
 const userRoutes = require( './src/routes/Users')
 const authRoutes = require('./src/routes/auth')
+const myHotelRoutes = require("./src/routes/My-hotels")
 
 dotenv.config();
 
@@ -53,6 +54,7 @@ app.use(cors({
 app.use("/auth", authRoutes)
 app.use("/users", userRoutes)
 app.use("/logout", logoutRoutes);
+app.use("/my-hotels", myHotelRoutes)
 
 {authorization: `bearer {token}`}
 // Auth endpoint
