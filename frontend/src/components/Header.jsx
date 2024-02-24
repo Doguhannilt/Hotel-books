@@ -56,14 +56,14 @@ const handleLogout = async () => {
           <>
           <div className = "flex bg-sky-500/90">
             <Link 
-            to="/profile" 
+            to="/bookings" 
             className="flex bg-sky-500/90 items-center  px-3 font-bold hover:bg-gray-100">
-              Profile
+              My Bookings
             </Link>
             <Link 
-            to="/settings" 
+            to="/hotels" 
             className="flex bg-sky-500/90 items-center  px-3 font-bold hover:bg-gray-100">
-              Settings
+              My Hotels
             </Link>
             <button  to={"users/register"}
              onClick={handleLogout}

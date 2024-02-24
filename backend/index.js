@@ -6,6 +6,19 @@ const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken")
 const cookieParser = require("cookie-parser")
 
+// Cloudinary
+const cloudinary = require("cloudinary")
+
+try{
+    console.log("Cloudinary config is started")
+cloudinary.config({
+    cloud_name : process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+})
+} catch(err){
+    console.log(err)
+}
 // PORT
 const PORT = process.env.PORT || 5000
 
@@ -45,8 +58,6 @@ app.use("/logout", logoutRoutes);
 // Auth endpoint
 app.post('/check', (req, res) => {
     const { auth_token } = req.cookies;
-    
-  
     try {
       // Verifying token
       const decoded = jwt.verify(auth_token, process.env.JWT_SECRET_KEY);
@@ -54,7 +65,6 @@ app.post('/check', (req, res) => {
       return res.status(200).json({ valid: true });
     } catch (error) {
         // If token is not ok
-            
             return res.status(401).json({ message: "Not available" });
     }
   });
