@@ -5,6 +5,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import DetailsSection from './DetailsSection'
 import TypeSection from './TypeSection'
 import FacilitiesSection from './FacilitiesSection'
+import GuestsSection from './GuestsSection'
 
 const ManageHotelForm = () => {
     const formMethods = useForm()
@@ -15,6 +16,7 @@ const ManageHotelForm = () => {
         <DetailsSection/>
         <TypeSection/>
         <FacilitiesSection/>
+        <GuestsSection/>
     </form>
     </FormProvider>
   )
