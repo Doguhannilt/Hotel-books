@@ -1,6 +1,7 @@
 // Requirements
 const express = require("express")
 const router = express.Router()
+const cloudinary = require("cloudinary").v2;
 
 
 /* Multer is a node.js middleware for handling multipart/form-data ,
@@ -31,11 +32,11 @@ router.post("/", verifyToken,[
     body("name").notEmpty().withMessage("Name is Required"),
     body("city").notEmpty().withMessage("City is Required"),
     body("country").notEmpty().withMessage("Country is Required"),
-    body("description").notEmpty().withMessage("Description is Required"),
+    body("description").optional().isString(), // Optional
     body("type").notEmpty().withMessage("Type is Required"),
     body("pricePerNight").notEmpty().isNumeric().withMessage("Price Per Night is Required"),
     body("facilities").notEmpty().isArray().withMessage("facilities is Required"),
-   
+    body("imageUrls").optional(),
 ],upload.array("imageFiles",6), async (req,res) => {
         try {
             const imageFiles = req.files 
@@ -49,7 +50,7 @@ router.post("/", verifyToken,[
                 which can be saved or transported over the network without data loss.*/
                 const b64 = Buffer.from(image.buffer).toString("base64")
                 let dataURI = "data:" + image.mimetype + ";base64," + b64
-                const res = await cloudinary.v2.uploader.upload(dataURI)
+                const res = await cloudinary.uploader.upload(dataURI) 
                 return res.url
             })
             // 2. If upload was successful, add the urls to the new hotel
@@ -59,7 +60,7 @@ router.post("/", verifyToken,[
             newHotel.userId = req.userId
 
             // 3. Save the new hotel in our databse
-            const hotel = new Hotel(hotel)
+            const hotel = new Hotel(newHotel)
             await hotel.save()
             // 4. Return a 201 status
             res.status(201).send(hotel)

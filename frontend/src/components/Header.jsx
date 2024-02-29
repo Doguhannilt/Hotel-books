@@ -57,17 +57,17 @@ const handleLogout = async () => {
           <div className = "flex bg-sky-500/90">
             <Link 
             to="/bookings" 
-            className="flex bg-sky-500/90 items-center  px-3 font-bold hover:bg-gray-100">
+            className="flex items-center  px-3 font-bold hover:bg-blue-500/20">
               My Bookings
             </Link>
             <Link 
             to="/hotels" 
-            className="flex bg-sky-500/90 items-center  px-3 font-bold hover:bg-gray-100">
+            className="flex items-center  px-3 font-bold hover:bg-blue-500/20">
               My Hotels
             </Link>
             <button  to={"users/register"}
              onClick={handleLogout}
-            className="flex bg-sky-500/90 items-center px-3 font-bold hover:bg-gray-100">
+            className="flex  items-center px-3 font-bold hover:bg-blue-500/20">
               Log out
             </button></div>
           </>
@@ -75,7 +75,7 @@ const handleLogout = async () => {
           <Link 
           to={"users/register"} 
          
-          className="flex bg-sky-500/90 items-center px-3 font-bold hover:bg-gray-100">
+          className="flex items-center bg-sky-500/90 px-3 font-bold hover:text-black/50">
             Sign In
           </Link>
         )}

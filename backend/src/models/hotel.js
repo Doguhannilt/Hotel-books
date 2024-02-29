@@ -8,13 +8,12 @@ const hotelSchema = new mongoose.Schema({
     country: { type: String, required: true },
     description: { type: String, required: true },
     type: { type: String, required: true },
-    city: { type: Number, required: true },
     adultCount: { type: Number, required: true },
     childCount: { type: Number, required: true },
-    facilities: { type: String, required: true },
+    facilities: { type: Array, required: true },
     pricePerNight: { type: Number, required: true },
     starRating: { type: Number, required: true },
-    imagerUrls: { type: String, required: true },
+    imageUrls: { type: Array, required:true},
     lastUpdated: { type: Date, required: true },
 });
 

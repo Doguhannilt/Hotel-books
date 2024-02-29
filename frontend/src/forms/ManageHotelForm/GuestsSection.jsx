@@ -5,7 +5,7 @@ const GuestsSection = () => {
     const {register, formState: {errors}} = useFormContext()
   return (
     <div>
-      <h2 className = "text-2xl font-bold mb-3">Guests</h2>
+      <h2 className = "text-2xl font-bold mb-3 mt-6">Guests</h2>
       <div className='grid grid-cols-2 gap-5 p-6 '>
         <label className='text-gray-700 text-sm font-semibold'> Adults
         <input 

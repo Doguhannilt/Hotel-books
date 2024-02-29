@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken")
 const cookieParser = require("cookie-parser")
-
+dotenv.config();
 // Cloudinary
 const cloudinary = require("cloudinary")
 
@@ -29,7 +29,7 @@ const userRoutes = require( './src/routes/Users')
 const authRoutes = require('./src/routes/auth')
 const myHotelRoutes = require("./src/routes/My-hotels")
 
-dotenv.config();
+
 
 // MONGODB CONNECTION
 mongoose.connect(process.env.MONGODB_CONNECTION)
