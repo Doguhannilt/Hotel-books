@@ -68,4 +68,15 @@ router.post("/", verifyToken,[
             console.log(`The error is happened in My-Hotels ${err}`)
         }
 })
+
+router.get("/", verifyToken, async(req,res) => {
+
+    try{
+    const hotels = await Hotel.find({userId: req.userId})
+    res.json(hotels)
+
+    }catch(err) {
+        console.log(err) 
+        res.status(500).json({message:"Error fetching hotels"})}
+})
 module.exports = router;

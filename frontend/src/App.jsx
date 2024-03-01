@@ -6,6 +6,8 @@ import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-d
 import Register from './pages/Register'
 import Login from './pages/Login'
 import AddHotel from './pages/AddHotel'
+import MyHotels from './pages/MyHotels'
+
 
 function App() {
 
@@ -20,7 +22,7 @@ function App() {
        <Route path= "/users/register" element = {<Layout><Register/></Layout>}/>
 
        <Route path="/add-hotel" element= {<Layout><AddHotel/></Layout>}/>
-
+      <Route path= "/my-hotels" element = {<Layout><MyHotels/></Layout>}/>
        <Route path= "/auth/login" element = {<Layout><Login/></Layout>}/>
       
       </Routes>

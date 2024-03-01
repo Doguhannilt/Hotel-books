@@ -61,7 +61,7 @@ const handleLogout = async () => {
               My Bookings
             </Link>
             <Link 
-            to="/hotels" 
+            to="/my-hotels" 
             className="flex items-center  px-3 font-bold hover:bg-blue-500/20">
               My Hotels
             </Link>
