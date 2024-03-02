@@ -8,6 +8,7 @@ import TypeSection from './TypeSection'
 import FacilitiesSection from './FacilitiesSection'
 import GuestsSection from './GuestsSection'
 import ImagesSection from './ImagesSection'
+import { Link } from 'react-router-dom';
 
 const ManageHotelForm = () => {
     const formMethods = useForm()

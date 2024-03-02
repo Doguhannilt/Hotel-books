@@ -79,4 +79,19 @@ router.get("/", verifyToken, async(req,res) => {
         console.log(err) 
         res.status(500).json({message:"Error fetching hotels"})}
 })
+
+router.delete("/delete/:id", verifyToken, async (req, res) => {
+    try {
+      const deletedHotel = await Hotel.findOneAndDelete({ _id: req.params.id, userId: req.userId });
+      if (!deletedHotel) {
+        return res.status(404).json({ message: "Hotel not found" });
+      }
+      res.json({ message: "Hotel deleted successfully" });
+    } catch (err) {
+      console.error("Delete system error ->", err);
+      res.status(500).json({ message: "Error deleting hotel" });
+    }
+  });
+  
+
 module.exports = router;
