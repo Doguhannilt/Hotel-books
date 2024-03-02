@@ -80,7 +80,7 @@ const MyHotels = () => {
             <Link
                to={`/my-hotels/edit/${hotel._id}`}
               className='bg-blue-600 hover:bg-blue-500 text-white font-bold h-10 w-20 text-lg text-center'>
-              Edit
+              Edit 
             </Link>
           </div>
         </div>

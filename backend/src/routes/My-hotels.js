@@ -93,7 +93,7 @@ router.delete("/delete/:id", verifyToken, async (req, res) => {
     }
   });
 
-  router.put("/edit/:id", verifyToken, async (req, res) => {
+  router.put("/update-hotel/:id", verifyToken, async (req, res) => {
     try {
       const updatedHotel = await Hotel.findByIdAndUpdate(
         req.params.id,
