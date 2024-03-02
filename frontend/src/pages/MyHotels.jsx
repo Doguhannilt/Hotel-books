@@ -10,13 +10,13 @@ const MyHotels = () => {
 
   useEffect(() => {
     axios.get('http://localhost:7000/my-hotels')
-      .then(response => {
+      .then(response => { 
         setHotels(response.data);
       })
       .catch(error => {
         console.error('Error fetching hotels:', error);
       });
-  }, []);
+  }, []); 
 
   const deleteButton = async (hotelId) => {
     try {
@@ -25,7 +25,7 @@ const MyHotels = () => {
         const updatedHotels = hotels.filter((hotel) => hotel._id !== hotelId);
         setHotels(updatedHotels);
       } else {
-        console.error("Delete error -> Hotel not found");
+        console.error("Delete error -> Hotel not founds");
       }
     } catch (error) {
       console.error("Delete error ->", error);
@@ -41,7 +41,7 @@ const MyHotels = () => {
             Add Hotel
           </Link>
         </span>
-      </div>
+      </div> 
       {hotels.map((hotel) => (
         <div className='mt-4 mb-6 pl-60 pr-60' key={hotel._id}>
           <div className='bg-blue-300/50'>
@@ -76,9 +76,9 @@ const MyHotels = () => {
               className='bg-blue-600 hover:bg-blue-500 text-white font-bold h-10 w-24 text-lg text-center'
               onClick={() => deleteButton(hotel._id)}>
               Delete
-            </button>
+            </button> 
             <Link
-              to={`/edit-hotel/${hotel._id}`}
+               to={`/my-hotels/edit/${hotel._id}`}
               className='bg-blue-600 hover:bg-blue-500 text-white font-bold h-10 w-20 text-lg text-center'>
               Edit
             </Link>

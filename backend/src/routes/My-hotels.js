@@ -92,6 +92,39 @@ router.delete("/delete/:id", verifyToken, async (req, res) => {
       res.status(500).json({ message: "Error deleting hotel" });
     }
   });
+
+  router.put("/edit/:id", verifyToken, async (req, res) => {
+    try {
+      const updatedHotel = await Hotel.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+      );
   
+      if (!updatedHotel) {
+        return res.status(404).json({ message: "Hotel not found" });
+      }
+  
+      res.json({ message: "Hotel updated successfully", hotel: updatedHotel });
+    } catch (err) {
+      console.error("Update hotel error ->", err);
+      res.status(500).json({ message: "Error updating hotel" });
+    }
+  });
+  
+  router.get("/edit-hotel/:id", verifyToken, async (req, res) => {
+    const hotelId = req.params.id;
+    try {
+        const hotel = await Hotel.findOne({ _id: hotelId, userId: req.userId });
+        if (!hotel) {
+            return res.status(404).json({ message: "Hotel not found" });
+        }
+        res.json(hotel);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: "Error fetching hotel" });
+    }
+});
+
 
 module.exports = router;
