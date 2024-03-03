@@ -28,7 +28,7 @@ const logoutRoutes = require('./src/routes/Logout')
 const userRoutes = require( './src/routes/Users')
 const authRoutes = require('./src/routes/auth')
 const myHotelRoutes = require("./src/routes/My-hotels")
-
+const HotelRoutes = require("./src/routes/Hotels")
 
 
 // MONGODB CONNECTION
@@ -51,10 +51,17 @@ app.use(cors({
     credentials:true,
 }));
 
+// Login
 app.use("/auth", authRoutes)
+// Register
 app.use("/users", userRoutes)
+// Log out
 app.use("/logout", logoutRoutes);
+// Hotels (With ValidateToken)
 app.use("/my-hotels", myHotelRoutes)
+
+// Hotels (All public)
+app.use("/hotels", HotelRoutes)
 
 {authorization: `bearer {token}`}
 // Auth endpoint
