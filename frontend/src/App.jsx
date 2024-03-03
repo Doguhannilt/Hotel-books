@@ -8,6 +8,8 @@ import Login from './pages/Login'
 import AddHotel from './pages/AddHotel'
 import EditHotel from './pages/EditHotel'
 import MyHotels from './pages/MyHotels'
+import MainPage from './pages/MainPage'
+
 
 
 
@@ -18,8 +20,7 @@ function App() {
     <Router>
       <Routes>
       
-       <Route path="/" element={<Layout></Layout>}/>
-       <Route path="/search"  element={<>Search Page</>}/>
+       <Route path="/" element={<Layout><MainPage/></Layout>}/>
        <Route path="*"  element={<Navigate to = "/" />}/>
        <Route path= "/users/register" element = {<Layout><Register/></Layout>}/>
 

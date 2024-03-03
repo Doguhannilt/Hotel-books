@@ -16,8 +16,8 @@ router.get("/search", async (req,res) => {
         
         // pageNumber = 4
         const skip = (pageNumber - 1) * pageSize
-        const hotels = await Hotel.find().skip(skip).limit(pageSize)
-
+        const hotelss = await Hotel.find().skip(skip).limit(pageSize)
+        const hotels = await Hotel.find()
         const total = await Hotel.countDocuments()
 
         const response = {
@@ -28,7 +28,7 @@ router.get("/search", async (req,res) => {
                 pages: Math.ceil(total/pageSize)
             }
         }
-        res.json(response)
+        res.json(hotels)
     } catch (err) {
         console.log(`Error is occured in Hotels.js -> ${err}`)
         res.status(500).json({message: "Something went wrong :("})
