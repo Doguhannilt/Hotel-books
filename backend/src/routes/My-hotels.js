@@ -3,7 +3,6 @@ const express = require("express")
 const router = express.Router()
 const cloudinary = require("cloudinary").v2;
 
-
 /* Multer is a node.js middleware for handling multipart/form-data ,
  which is primarily used for uploading files. It is written on top of 
  busboy for maximum efficiency. 
@@ -69,20 +68,23 @@ router.post("/", verifyToken,[
         }
 })
 
+// GET REQUEST 
 router.get("/", verifyToken, async(req,res) => {
-
     try{
     const hotels = await Hotel.find({userId: req.userId})
     res.json(hotels)
-
-    }catch(err) {
+    }
+    catch(err) {
         console.log(err) 
         res.status(500).json({message:"Error fetching hotels"})}
 })
 
+// DELETE REQUEST
 router.delete("/delete/:id", verifyToken, async (req, res) => {
     try {
       const deletedHotel = await Hotel.findOneAndDelete({ _id: req.params.id, userId: req.userId });
+
+      // If there is no hotel for deleting
       if (!deletedHotel) {
         return res.status(404).json({ message: "Hotel not found" });
       }
@@ -93,6 +95,8 @@ router.delete("/delete/:id", verifyToken, async (req, res) => {
     }
   });
 
+
+// PUT REQUEST && my-hotels/update-hotel/:id
   router.put("/update-hotel/:id", verifyToken, async (req, res) => {
     try {
       const updatedHotel = await Hotel.findByIdAndUpdate(
@@ -101,6 +105,7 @@ router.delete("/delete/:id", verifyToken, async (req, res) => {
         { new: true }
       );
   
+      // If there is no hotel for updating
       if (!updatedHotel) {
         return res.status(404).json({ message: "Hotel not found" });
       }
@@ -112,10 +117,17 @@ router.delete("/delete/:id", verifyToken, async (req, res) => {
     }
   });
   
+
+// GET REQUEST && my-hotels/edit-hotel/:id
   router.get("/edit-hotel/:id", verifyToken, async (req, res) => {
     const hotelId = req.params.id;
     try {
-        const hotel = await Hotel.findOne({ _id: hotelId, userId: req.userId });
+        const hotel = await Hotel.findOne(
+          { 
+            _id: hotelId, 
+            userId: req.userId 
+          });
+
         if (!hotel) {
             return res.status(404).json({ message: "Hotel not found" });
         }
