@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+
+// ICONS
 import { BsBuilding, BsMap } from "react-icons/bs";
 import { BiHotel, BiMoney, BiStar } from "react-icons/bi";
 
 const MyHotels = () => {
   axios.defaults.withCredentials = true;
+
+   {/* useState */}
   const [hotels, setHotels] = useState([]);
 
   useEffect(() => {
+    // my-hotels/
+    // Take data as JSON
     axios.get('http://localhost:7000/my-hotels')
       .then(response => { 
         setHotels(response.data);
@@ -18,9 +24,12 @@ const MyHotels = () => {
       });
   }, []); 
 
+  // Delete Func
   const deleteButton = async (hotelId) => {
     try {
+      // my-hotels/delete/:id
       const response = await axios.delete(`http://localhost:7000/my-hotels/delete/${hotelId}`);
+      
       if (response.data.message === "Hotel deleted successfully") {
         const updatedHotels = hotels.filter((hotel) => hotel._id !== hotelId);
         setHotels(updatedHotels);
@@ -34,20 +43,24 @@ const MyHotels = () => {
 
   return (
     <div>
+      {/* My Hotel */}
       <div className='space-y-5 pl-60 pr-60'>
         <span className='flex justify-between mt-4'>
           <h1 className='text-3xl font-bold'>My Hotels</h1>
+           {/* localhost:7000/add-hotel*/}
           <Link to='/add-hotel' className='flex bg-blue-600 text-white text-xl font-bold p-2 hover:bg-blue-500'>
             Add Hotel
           </Link>
         </span>
       </div> 
+       {/* Description */}
       {hotels.map((hotel) => (
         <div className='mt-4 mb-6 pl-60 pr-60' key={hotel._id}>
           <div className='bg-blue-300/50'>
             <h3 className='font-bold text-2xl'>{hotel.name}</h3>
             <span>{hotel.description}</span>
 
+         {/* Details Section */}
             <div className='grid grid-cols-5 gap-2'>
               <div className='flex'>
                 <BsMap className='mr-2 mt-1' />
@@ -72,11 +85,13 @@ const MyHotels = () => {
             </div>
           </div>
           <div className='flex justify-between mt-6'>
+           {/* Delete Button */}
             <button
               className='bg-blue-600 hover:bg-blue-500 text-white font-bold h-10 w-24 text-lg text-center'
               onClick={() => deleteButton(hotel._id)}>
               Delete
             </button> 
+             {/* localhost:7000/my-hotels/edit/:id */}
             <Link
                to={`/my-hotels/edit/${hotel._id}`}
               className='bg-blue-600 hover:bg-blue-500 text-white font-bold h-10 w-20 text-lg text-center'>
