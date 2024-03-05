@@ -23,7 +23,7 @@ const MainPage = () => {
 
   useEffect(() => { 
     fetchData();
-  }, [filters]); // filters değiştiğinde fetchData() fonksiyonunu çalıştır
+  }, [filters]); 
 
   const handleSearch = (searchFilters) => {
     setFilters(searchFilters);
@@ -51,7 +51,7 @@ const MainPage = () => {
             <div className="w-[500px] h-[240px] mt-10 ">
               <img src={post.imageUrls} alt={post.name} className=" rounded w-full h-full object-cover object-center hover:transform hover:translate-x-2 hover:translate-y-2 duration-300" />
             </div>
-            <div className="flex flex-col justify-end " key={post.id}>
+            <div className="flex flex-col justify-start mt-12 " key={post.id}>
               <div className='text-3xl font-bold font-serif flex flex-col'>
                 <div className='flex '>
                 <h1>{post.name}</h1>

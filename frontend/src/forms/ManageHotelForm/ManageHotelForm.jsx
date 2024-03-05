@@ -8,9 +8,10 @@ import TypeSection from './TypeSection'
 import FacilitiesSection from './FacilitiesSection'
 import GuestsSection from './GuestsSection'
 import ImagesSection from './ImagesSection'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ManageHotelForm = () => {
+    const navigation = useNavigate()
     const formMethods = useForm()
     const { handleSubmit } = formMethods
     axios.defaults.withCredentials = true
@@ -46,8 +47,9 @@ const ManageHotelForm = () => {
                     "Content-Type": "multipart/form-data",
                    
                 }
+               
             });
-
+            navigation("/")
         } catch (error) {
             console.error("Error adding hotel:", error);
         }
@@ -65,10 +67,11 @@ const ManageHotelForm = () => {
                     <ImagesSection />
 
                     <span className='flex justify-end'>
-                       
+                      
                         <button type="submit" className='bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 cursor-pointer text-2xl'>
                             Save
                         </button>
+                       
                     </span>
                 </div>
             </form>
