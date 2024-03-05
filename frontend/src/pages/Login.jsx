@@ -3,11 +3,12 @@ import { useForm } from 'react-hook-form';
 import Axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react'
+import { useStatesForLogin } from '../Hooks/Hooks';
 
 const Login = () => { 
 
-  const [email, setEmail] = useState(" ");
-  const [password, setPassword] = useState(" ");
+  const {email,setEmail,password,setPassword}  = useStatesForLogin()
+  
   const navigation = useNavigate()
   const {
     register,

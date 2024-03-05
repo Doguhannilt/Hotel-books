@@ -1,7 +1,8 @@
 // src/hooks/Custom_hooks.js
-
 import { useState } from 'react';
 
+
+// src/pages/MainPage.jsx
 export const useStatesForSearchBar = () => {
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
@@ -19,3 +20,16 @@ export const useStatesForSearchBar = () => {
     setStarRating,
   };
 };
+
+// src/pages/Login.jsx
+export const useStatesForLogin = () => {
+    const [email, setEmail] = useState(" ");
+    const [password, setPassword] = useState(" ");
+    return {
+        email,
+        setEmail,
+        password,
+        setPassword
+    }
+
+}
