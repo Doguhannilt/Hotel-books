@@ -79,3 +79,13 @@ export const useStatesForEditHotel = () => {
         setHotel
     }
 }
+
+// src/pages/MyHotel.jsx
+export const useStatesForMyHotel = () => {
+    const [hotels, setHotels] = useState([]);
+    
+    return {
+        hotels,
+        setHotels
+    }
+}

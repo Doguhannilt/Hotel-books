@@ -6,11 +6,14 @@ import axios from 'axios';
 import { BsBuilding, BsMap } from "react-icons/bs";
 import { BiHotel, BiMoney, BiStar } from "react-icons/bi";
 
+// useState
+import { useStatesForMyHotel } from '../Hooks/Hooks';
+
 const MyHotels = () => {
   axios.defaults.withCredentials = true;
 
    {/* useState */}
-  const [hotels, setHotels] = useState([]);
+  const { hotels, setHotels} = useStatesForMyHotel()
 
   useEffect(() => {
     // my-hotels/
