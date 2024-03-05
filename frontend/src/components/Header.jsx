@@ -42,7 +42,7 @@ const handleLogout = async () => {
     );
     console.log(response.data.message); // Success message
     
-    // If it's succesful
+    // If it's succesfull
     setIsLoggedIn(false);
   } catch (error) {
     console.error('Logout failed:', error);
@@ -53,6 +53,7 @@ const handleLogout = async () => {
 
   return (
     <div>
+
       <span className="">
         {isLoggedIn ? (
           <>
@@ -67,6 +68,11 @@ const handleLogout = async () => {
             className="flex items-center  px-3 font-bold hover:bg-blue-500/20">
               My Hotels
             </Link>
+            <Link 
+            to="/" 
+            className="flex items-center  px-3 font-bold hover:bg-blue-500/20">
+              Home
+            </Link>
             <button  to={"users/register"}
              onClick={handleLogout}
             className="flex  items-center px-3 font-bold hover:bg-blue-500/20">
@@ -80,6 +86,7 @@ const handleLogout = async () => {
           className="flex items-center bg-sky-500/90 px-3 font-bold hover:text-black/50">
             Sign In
           </Link>
+          
         )}
       </span>
     </div>
