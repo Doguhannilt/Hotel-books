@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SearchBar from './SearchBar';
 
+// useState
+import { useStatesForMainPage } from '../Hooks/Hooks';
+
 
 const MainPage = () => {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [filters, setFilters] = useState({});
-
+  
+  const { posts, setPosts, loading, setLoading, filters, setFilters} = useStatesForMainPage()
 
   const fetchData = async () => {
     try {

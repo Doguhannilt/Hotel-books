@@ -33,3 +33,39 @@ export const useStatesForLogin = () => {
     }
 
 }
+
+
+// src/pages/Login.jsx
+export const useStatesForRegister = () => {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    return {
+        firstName,
+        setFirstName,
+        lastName,
+        setLastName,
+        email,
+        setEmail,
+        password,
+        setPassword
+    }
+
+}
+
+
+export const useStatesForMainPage = () => {
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [filters, setFilters] = useState({});
+
+    return {
+        posts, 
+        setPosts,
+        loading,
+        setLoading,
+        filters,
+        setFilters
+    }
+}
