@@ -89,3 +89,13 @@ export const useStatesForMyHotel = () => {
         setHotels
     }
 }
+
+// src/components/Header.jsx
+export const useStatesHeader = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    return {
+        isLoggedIn,
+        setIsLoggedIn
+    }
+}

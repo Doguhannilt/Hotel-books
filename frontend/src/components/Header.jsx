@@ -2,10 +2,12 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-
+// useState
+import { useStatesHeader } from '../Hooks/Hooks';
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  const { isLoggedIn, setIsLoggedIn } = useStatesHeader()
 
   useEffect(() => {
     const checkTokenValidity = async () => {
