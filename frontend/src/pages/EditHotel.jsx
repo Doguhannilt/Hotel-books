@@ -3,12 +3,15 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { hotelFacilities, hotelTypes } from '../config/hotel-options-congif';
 
+// useState
+import { useStatesForEditHotel } from '../Hooks/Hooks';
+
 const EditHotel = () => {
     axios.defaults.withCredentials = true;
     const { id } = useParams();
 
     // useState
-    const [hotel, setHotel] = useState(null);
+    const { hotel, setHotel} = useStatesForEditHotel()
 
     useEffect(() => {
         // my-hotels/edit-hotel/:id

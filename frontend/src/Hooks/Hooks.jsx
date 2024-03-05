@@ -54,7 +54,7 @@ export const useStatesForRegister = () => {
 
 }
 
-
+// src/pages/MainPage.jsx
 export const useStatesForMainPage = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -67,5 +67,15 @@ export const useStatesForMainPage = () => {
         setLoading,
         filters,
         setFilters
+    }
+}
+
+// src/pages/EditHotel.jsx
+export const useStatesForEditHotel = () => {
+    const [hotel, setHotel] = useState(null);
+
+    return {
+        hotel,
+        setHotel
     }
 }
