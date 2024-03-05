@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+
+// useToast
 import { useToast } from '@chakra-ui/react';
+
+// useStates
+import { useStatesForRegister } from '../Hooks/Hooks';
 
 
 const Register = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
+  const {firstName, setFirstName,lastName,setLastName,email,setEmail,password,setPassword} = useStatesForRegister()
+
   const toast = useToast()
   const navigation = useNavigate()
 
