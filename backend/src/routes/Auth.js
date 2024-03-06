@@ -5,6 +5,9 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
 
+const logger = require('../utils/info_logger')
+const e_logger = require('../utils/error_logger')
+
 
 router.post("/login", [ 
     check("email", "Email is required").isEmail(),
@@ -16,24 +19,24 @@ router.post("/login", [
             if(!errors.isEmpty()) {
                 return res.status(400).json({message: errors.array()})
             }
-            console.log("Checked for email and password")
+            logger.info("Checked for email and password")
             // ! Take the email and password from user
             const {email , password} = req.body
-            console.log("Take email and password from the user")
+            logger.info("Take email and password from the user")
             // ? We find the user based on "email"
             const user = await UserModel.findOne({
                 email
             })
-            console.log("Find the email")
+            logger.info("Find the email")
             // ? Checking if user exist
             if(!user) {
                 return res.status(400).json({ message: "Invalid Credentials" })
             }
-            console.log("User exists or not")
+            logger.info("User exists or not")
             // ? Is given password matching with the password in the database?
             const isMatch = await bcrypt.compare(password, user.password)
             if(!isMatch) { return res.status(400).json({ message: "Invalid Credentials" }) }
-            console.log("Password is matching")
+            logger.info("Password is matching")
             // ? HTTP cookie
             const token = jwt.sign({userId: user.id}, process.env.JWT_SECRET_KEY, {
                 expiresIn: "1d"
@@ -44,7 +47,7 @@ router.post("/login", [
             })
             res.status(200).json({ userId: user._id })
         } catch (err) {
-            console.log(`Something wrong with Auth -> ${err}`)
+            logger.info(`Something wrong with Auth -> ${err}`)
             res.status(500).json({message: "Something went wrong :("})
         }
     })

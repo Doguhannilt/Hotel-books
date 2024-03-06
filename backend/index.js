@@ -9,15 +9,18 @@ dotenv.config();
 // Cloudinary
 const cloudinary = require("cloudinary")
 
+const logger = require('./src/utils/info_logger')
+const e_logger = require('./src/utils/error_logger')
+
 try{
-    console.log("Cloudinary config is started")
+    logger.info('Cloudinary init')
 cloudinary.config({
     cloud_name : process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
 })
 } catch(err){
-    console.log(err)
+    e_logger(err)
 }
 // PORT
 const PORT = process.env.PORT || 5000
@@ -34,10 +37,10 @@ const HotelRoutes = require("./src/routes/Hotels")
 // MONGODB CONNECTION
 mongoose.connect(process.env.MONGODB_CONNECTION)
 .then(() => {
-    console.log('MongoDB Connected');
+    logger.info("MongoDB Connected")
 })
 .catch((error) => {
-    console.error(`Error connecting to MongoDB: ${error.message}`);
+    e_logger(error)
     process.exit(1);
 });
 
@@ -80,6 +83,6 @@ app.post('/check', (req, res) => {
 
 // Listen config
 app.listen(7000, () => {
-    console.log(`Server started on port 7000`);
+    logger.info("Server is started in 7000")
 });
  
