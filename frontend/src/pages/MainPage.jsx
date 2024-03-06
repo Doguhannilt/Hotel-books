@@ -69,7 +69,7 @@ const MainPage = () => {
                   <b>Price Per Night:</b> <a>{post.pricePerNight}</a>
                 </span>
               </div></div>
-              <span className='text-xl font-normal font-serif hover:text-gray-600'>
+              <span className='font-thin font-serif hover:text-gray-600'>
                   {post.description}
                 </span>
               </div>

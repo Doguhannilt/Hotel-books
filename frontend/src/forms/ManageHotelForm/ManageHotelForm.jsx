@@ -8,15 +8,19 @@ import TypeSection from './TypeSection'
 import FacilitiesSection from './FacilitiesSection'
 import GuestsSection from './GuestsSection'
 import ImagesSection from './ImagesSection'
+
 import { Link, useNavigate } from 'react-router-dom';
+import { toast_info_hotel_created, toast_info_hotel_not_created } from '../../toast/Toast';
+import { useToast } from '@chakra-ui/react';
 
 const ManageHotelForm = () => {
     const navigation = useNavigate()
     const formMethods = useForm()
+    const toast = useToast()
     const { handleSubmit } = formMethods
     axios.defaults.withCredentials = true
     const onSubmit = handleSubmit(async (formDataJson) => {
-        console.log("Your Hotel is in process...")
+        
         try {
             const formData = new FormData()
             formData.append("name", formDataJson.name)
@@ -34,24 +38,18 @@ const ManageHotelForm = () => {
                     formData.append(`facilities[${index}]`, facility)
                 })
             }
-
-           
                 Array.from(formDataJson.imageFiles).forEach((imageFile) => {
                     formData.append(`imageFiles`, imageFile)
-                })
-            
-            
-            // axios ile FormData'yı kullanarak POST isteği gönderme
+                })                                   
             const response = await axios.post("http://localhost:7000/my-hotels", formData, {
                 headers: {
-                    "Content-Type": "multipart/form-data",
-                   
-                }
-               
+                    "Content-Type": "multipart/form-data",            
+                }         
             });
+            toast_info_hotel_created(toast)
             navigation("/")
         } catch (error) {
-            console.error("Error adding hotel:", error);
+            toast_info_hotel_not_created(toast, error)
         }
     })
 

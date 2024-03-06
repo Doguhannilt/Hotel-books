@@ -1,7 +1,7 @@
 
 import { trueStatement } from "./redux/features/counter/isLogged"
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
-console.log("validateToken is created")
+
 export const validateToken = async () => {
     const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
         credentials: "include"

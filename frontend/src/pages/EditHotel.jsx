@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { hotelFacilities, hotelTypes } from '../config/hotel-options-congif';
 
 // useState
 import { useStatesForEditHotel } from '../Hooks/Hooks';
+import { toast_info_editHotel } from '../toast/Toast';
+import { useToast } from '@chakra-ui/react';
 
 const EditHotel = () => {
     axios.defaults.withCredentials = true;
+    const navigation = useNavigate()
     const { id } = useParams();
+    const toast = useToast()
 
     // useState
     const { hotel, setHotel} = useStatesForEditHotel()
@@ -29,8 +33,10 @@ const EditHotel = () => {
         // Form submit && my-hotels/update-hotel/:id
         axios.put(`http://localhost:7000/my-hotels/update-hotel/${id}`, hotel)
             .then(res => {
-                console.log(res.data);
+               // console.log(res.data);
             })
+            toast_info_editHotel(toast)
+            navigation("/")
             .catch(err => {
                 console.error(err);
             });
@@ -42,7 +48,6 @@ const EditHotel = () => {
     }
 
     return (
-      
         <div className='flex flex-col gap-4 pl-60 pr-60'>
            {/* These field comes from src/pages/MyHotels.jsx */}
             <h1 className="text-3xl font-bold mb-3 mt-10">Edit Your Hotel</h1>

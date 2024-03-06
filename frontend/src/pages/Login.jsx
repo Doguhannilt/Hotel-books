@@ -4,11 +4,12 @@ import Axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react'
 import { useStatesForLogin } from '../Hooks/Hooks';
+import { toast_info_login } from '../toast/Toast';
 
 const Login = () => { 
 
   const {email,setEmail,password,setPassword}  = useStatesForLogin()
-  
+  const toast = useToast();
   const navigation = useNavigate()
   const {
     register,
@@ -23,6 +24,7 @@ const Login = () => {
       email,
       password
     }).then(response => {
+      toast_info_login(toast)
       navigation("/home")
     }).catch(err => {
       console.log(`Login error: ${err}`)
@@ -65,8 +67,7 @@ const Login = () => {
       <span>
         <button
           type="submit"
-          className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-800 txt-2xl"
-        >
+          className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-800 txt-2xl rounded">
           Log in
         </button>
       </span> 

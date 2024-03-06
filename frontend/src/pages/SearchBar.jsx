@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { MdAirlineSeatReclineExtra, MdAirlineStops, MdGppGood, MdTravelExplore } from 'react-icons/md';
 
 // src/toasts/SearchBarToast
-import {toast_info_search_b} from '../toast/SearchBarToast.js';
+import {toast_info_search_b} from '../toast/Toast.js';
 
 // useToast - Chakra UI
 import { useToast } from '@chakra-ui/react';
@@ -21,6 +21,8 @@ const SearchBar = ({ onSearch }) => {
   const handleSearch = () => {
     onSearch({ name, city,country,starRating})
     toast_info_search_b(toast);}
+  
+
 
   return (
     <form className="-mt-4 p-3 bg-orange-400 rounded shadow-md grid grid-cols-4 lg:grid-cols-3 2xl:grid-cols-7 items-center gap-4 pl-80">
@@ -81,7 +83,8 @@ const SearchBar = ({ onSearch }) => {
           Search
         </button>
         {/* I don't want to add any function for Clear Button, because when user click it, the button will refresh the page so it's working */}
-        <button className='bg-red-600 text-white h-full p-2 font-bold text-xl lg:w-full md:w-full hover:bg-red-500'>
+        <button 
+        className='bg-red-600 text-white h-full p-2 font-bold text-xl lg:w-full md:w-full hover:bg-red-500'>
           Clear
         </button>
 

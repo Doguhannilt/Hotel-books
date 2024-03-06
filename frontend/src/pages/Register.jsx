@@ -8,19 +8,18 @@ import { useToast } from '@chakra-ui/react';
 
 // useStates
 import { useStatesForRegister } from '../Hooks/Hooks';
+import { toast_info_register_failed, toast_info_register_success } from '../toast/Toast';
 
 
 const Register = () => {
 
   const {firstName, setFirstName,lastName,setLastName,email,setEmail,password,setPassword} = useStatesForRegister()
-
   const toast = useToast()
   const navigation = useNavigate()
 
   const {
     register,
     watch,
-
     formState: { errors },
   } = useForm();
 
@@ -32,28 +31,15 @@ const Register = () => {
       email,
       password
     }).then(response => {
-      toast({
-        title: 'Your account is created',
-        description: 'Did you know that I am in love with Turkish Coffee.',
-        status: 'success',
-        duration: 9000,
-        isClosable: true,
-      }),
+      toast_info_register_success(toast),
       navigation("/auth/login")
     }).catch(err => {
-      toast({
-        title: 'An error occurred.',
-        description: 'Unable to create user account.',
-        status: 'error',
-        duration: 9000,
-        isClosable: true,
-      }),
-      console.log(`Registration error -> ${err}`)
+      toast_info_register_failed(toast)
     })
   }
   return (
     <div>
-      <form onSubmit={handleSubmit} className="mx-auto max-w-md flex flex-col gap-5 mt-16">
+      <form onSubmit={handleSubmit} className="mx-auto max-w-md flex flex-col gap-5 mt-16 font-bold h-full w-full">
         <h2 className="text-3xl font-bold">Create an Account</h2>
         <div className="flex flex-col md:flex-row gap-5">
           {/* First Name */}
@@ -123,8 +109,7 @@ const Register = () => {
         <span>
           <button
             type="submit"
-            className="bg-blue-600 text-white p-2 font-bold txt-xl hover:bg-blue-800"
-          >
+            className="bg-blue-600 text-white p-2 font-bold txt-xl hover:bg-blue-800 rounded">
             Create an account
           </button>
         </span>
