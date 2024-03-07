@@ -59,6 +59,7 @@ export const useStatesForMainPage = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filters, setFilters] = useState({});
+    const [isOpen, setIsOpen] = useState(true);
 
     return {
         posts, 
@@ -66,7 +67,9 @@ export const useStatesForMainPage = () => {
         loading,
         setLoading,
         filters,
-        setFilters
+        setFilters,
+        isOpen,
+        setIsOpen
     }
 }
 
@@ -97,5 +100,17 @@ export const useStatesHeader = () => {
     return {
         isLoggedIn,
         setIsLoggedIn
+    }
+}
+
+export const useStateForViews = () => {
+    const [showTooltip, setShowTooltip] = useState(false);
+    const [showTooltip_2, setShowTooltip_2] = useState(false);
+
+    return {
+        showTooltip,
+        setShowTooltip,
+        showTooltip_2,
+        setShowTooltip_2
     }
 }

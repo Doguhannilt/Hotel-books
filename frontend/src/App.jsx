@@ -11,7 +11,7 @@ import AddHotel from './pages/AddHotel'
 import EditHotel from './pages/EditHotel'
 import MyHotels from './pages/MyHotels'
 import MainPage from './pages/MainPage'
-
+import Details from './pages/Details'
 
 
 
@@ -28,6 +28,7 @@ function App() {
       <Route path= "/my-hotels" element = {<Layout><MyHotels/></Layout>}/>
        <Route path= "/auth/login" element = {<Layout><Login/></Layout>}/>
       <Route path = "/my-hotels/edit/:id" element = {<Layout><EditHotel/></Layout>}></Route>
+      <Route path = "/view/:id" element = {<Layout><Details/></Layout>} />
       </Routes>
     </Router>
   )

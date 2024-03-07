@@ -8,8 +8,19 @@ import { useStatesForMainPage } from '../Hooks/Hooks';
 
 const MainPage = () => {
   
-  const { posts, setPosts, loading, setLoading, filters, setFilters} = useStatesForMainPage()
+  const { posts, setPosts, loading, setLoading, filters, setFilters, isOpen, setIsOpen} = useStatesForMainPage()
+  
+  // Search Form
+  const handleSearch = (searchFilters) => {
+    setFilters(searchFilters);
+  };
+  
+    // Close Up POPUP
+  const handleClosePopup = () => {
+    setIsOpen(false);
+  };
 
+    // Fetching Data Using Axios
   const fetchData = async () => {
     try {
       const response = await axios.get('http://localhost:7000/hotels/search', { params: filters });
@@ -25,13 +36,22 @@ const MainPage = () => {
     fetchData();
   }, [filters]); 
 
-  const handleSearch = (searchFilters) => {
-    setFilters(searchFilters);
-  };
 
   if (loading) return <div>Loading...</div>;
 
   return (
+    <div>
+    {isOpen && (
+      <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center  z-50">
+        <div className="bg-gray-300  border border-gray-400 p-8 rounded-lg shadow">
+          <h2 className="text-2xl font-bold mb-4">Welcome to Lunahotel.com</h2>
+          <p className="text-lg mb-4">Don't forget to visit <a href = "https://github.com/doguhannilt"><span className='text-blue-400 hover:text-blue-600'>github.com/Doguhannilt</span></a></p>
+          <button onClick={handleClosePopup} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Close
+          </button>
+        </div>
+      </div>
+    )}
     <div>
       <SearchBar onSearch={handleSearch} />
       {posts
@@ -68,7 +88,7 @@ const MainPage = () => {
                 <span className="text-xl font-normal">
                   <b>Price Per Night:</b> <a>{post.pricePerNight}</a>
                 </span>
-              </div></div>
+              </div></div> 
               <span className='font-thin font-serif hover:text-gray-600'>
                   {post.description}
                 </span>
@@ -77,6 +97,7 @@ const MainPage = () => {
             </div>
           </div>
         ))}
+    </div>
     </div>
   );
 };
