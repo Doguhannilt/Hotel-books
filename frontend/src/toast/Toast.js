@@ -56,4 +56,10 @@ export const toast_info_clear = (toast) => {
     isClosable: true,
   });
 };
-
+export const toast_info_saved = (toast) => {
+  toast({
+    title: `Saved`,
+    status: 'success',
+    isClosable: true,
+  });
+}

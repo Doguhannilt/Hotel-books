@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // ICONS
 import { BiArrowFromRight } from "react-icons/bi";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaLocationArrow } from "react-icons/fa";
 
-
 // useState
 import { useStateForViews } from '../Hooks/Hooks';
+import { useToast } from '@chakra-ui/react';
+
+// Toast
+import { toast_info_saved } from '../toast/Toast';
 
 const Details = () => {
-
+  
+  const navigation = useNavigate()
   const { showTooltip, setShowTooltip, showTooltip_2, setShowTooltip_2 } = useStateForViews();
+  const toast = useToast()
 
+  const Save = () => {
+    toast_info_saved(toast)
+  }
+ 
   return (
     <div className='pl-80 pr-80'>
       <div className='grid grid-cols-2'>
@@ -79,7 +88,9 @@ const Details = () => {
        
               { /* SAVE BUTTON*/}
         <div className='flex justify-end '>
-          <button className=' bg-blue-600 text-white h-10 mt-16 w-20 font-arial hover:bg-blue-800 rounded hover:rounded-none duration-500 hover:duration-500'>
+          <button 
+          onClick={Save}
+          className=' bg-blue-600 text-white h-10 mt-16 w-20 font-arial hover:bg-blue-800 rounded hover:rounded-none duration-500 hover:duration-500'>
             Save it!
           </button>
         </div>
