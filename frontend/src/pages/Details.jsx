@@ -23,7 +23,7 @@ const Details = () => {
   const hotel = useSelector(state => state.hotel.hotels[0]);
 
   // useState
-  const { showTooltip, setShowTooltip, showTooltip_2, setShowTooltip_2, loading, setLoading } = useStateForViews();
+  const { showTooltip, setShowTooltip, showTooltip_2, setShowTooltip_2,showTooltip_3, setShowTooltip_3 ,loading, setLoading } = useStateForViews();
   
   // Toast
   const toast = useToast()
@@ -35,7 +35,7 @@ const Details = () => {
     setTimeout(() => setLoading(false), 3300);
   }, []);
 
-    // Loading
+    {/* Loading */}
   if (loading) {
     return <Loading />;
   }
@@ -45,7 +45,8 @@ const Details = () => {
       <div className='grid grid-cols-2'>
           
           { /* NAME */}
-        <h1 className='text-3xl font-bold font-arial pt-14 opacity-90'>H<span className='text-sky-400'>O</span>T<span className='text-sky-400'>E</span>L<span className='text-sky-400'>S</span></h1>
+          
+        <h1 className='text-3xl font-bold font-arial pt-14 opacity-90'>H<span className='text-sky-400'>O</span>T<span className='text-sky-400'>E</span>L<span className='text-sky-400'>S</span><span> - </span><span>{hotel.name}</span></h1>
          
           { /* HOME BUTTON */}
         <div className='flex justify-end mt-12'>
@@ -66,7 +67,7 @@ const Details = () => {
 
           { /* CHILD AND ADULT COUNT*/}
       <div>
-        <div className='grid grid-cols-4 gap-10 font-bold font-arial mt-10 opacity-80 hover:text-black'>
+        <div className='grid grid-cols-5 gap-10 font-bold font-arial mt-10 opacity-80 hover:text-black'>
           <div className="" onMouseEnter={() => setShowTooltip_2(true)} onMouseLeave={() => setShowTooltip_2(false)}>
             <span>A - {hotel.adultCount} C - {hotel.childCount}</span>
             {showTooltip_2 && (
@@ -90,7 +91,7 @@ const Details = () => {
 
               { /* PRICE PER NIGHT */}
           <div className="" onMouseEnter={() => setShowTooltip(true)} onMouseLeave={() => setShowTooltip(false)}>
-            <span>PPR: 12 €</span>
+            <span>PPR: {hotel.pricePerNight} €</span>
             {showTooltip && (
               <div className="absolute text-gray-500 opacity-80">
                 Currency: Euro<br></br>
@@ -98,9 +99,31 @@ const Details = () => {
               </div>
             )}
           </div>
-        </div>
+          
+              { /* FACILITIES */}
+          
+          <div className="" onMouseEnter={() => setShowTooltip_3(true)} onMouseLeave={() => setShowTooltip_3(false)}>
+          <span>Facilities</span>
+          {showTooltip_3 && (
+              <div className="absolute text-gray-500 opacity-80">
+               <ul className="mt-2 space-y-2">
+           {hotel.facilities.map((facility, index) => (
+                  <li key={index}>
+                  {facility}
+                </li>
+                ))}
+                </ul>
+              </div>
+            )}
+          </div>
+          
       </div>
+    
+        </div>
     </div>
+    
+      
+ 
 
   );
 };

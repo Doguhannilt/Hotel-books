@@ -109,6 +109,7 @@ export const useStatesHeader = () => {
 export const useStateForViews = () => {
     const [showTooltip, setShowTooltip] = useState(false);
     const [showTooltip_2, setShowTooltip_2] = useState(false);
+    const [showTooltip_3, setShowTooltip_3] = useState(false);
     const [loading, setLoading] = useState(true);
 
     return {
@@ -117,7 +118,8 @@ export const useStateForViews = () => {
         showTooltip_2,
         setShowTooltip_2,
         loading,
-        setLoading
-
+        setLoading,
+        showTooltip_3,
+        setShowTooltip_3
     }
 }
