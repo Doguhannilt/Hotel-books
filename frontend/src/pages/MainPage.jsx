@@ -65,7 +65,7 @@ const MainPage = () => {
        
         navigation("/view/")
     } catch (error) {
-        console.error("Otel bilgisini getirirken bir hata oluştu:", error);
+        console.error("Hotel Error", error);
     }
 };
 
