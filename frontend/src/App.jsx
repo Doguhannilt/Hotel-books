@@ -28,7 +28,7 @@ function App() {
       <Route path= "/my-hotels" element = {<Layout><MyHotels/></Layout>}/>
        <Route path= "/auth/login" element = {<Layout><Login/></Layout>}/>
       <Route path = "/my-hotels/edit/:id" element = {<Layout><EditHotel/></Layout>}></Route>
-      <Route path = "/view/:id" element = {<Layout><Details/></Layout>} />
+      <Route path = "/view/" element = {<Layout><Details/></Layout>} />
       </Routes>
     </Router>
   )

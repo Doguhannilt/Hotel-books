@@ -1,10 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import logged from '../redux/features/counter/isLogged'
+import loggedReducer from '../redux/features/counter/isLogged';
+import hotelReducer from '../redux/features/counter/viewData';
+import { enableMapSet } from 'immer';
 
-export const store = configureStore({
+
+enableMapSet()
+const store = configureStore({
     reducer: {
-        logger : logged
-    }
-})
+        logger: loggedReducer,
+        hotel: hotelReducer,
+      
+    },
+   
+});
 
 export default store;

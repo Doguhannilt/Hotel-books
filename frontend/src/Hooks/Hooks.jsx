@@ -60,6 +60,7 @@ export const useStatesForMainPage = () => {
     const [loading, setLoading] = useState(true);
     const [filters, setFilters] = useState({});
     const [isOpen, setIsOpen] = useState(true);
+    const [ hotel, setHotel] = useState()
 
     return {
         posts, 
@@ -69,7 +70,9 @@ export const useStatesForMainPage = () => {
         filters,
         setFilters,
         isOpen,
-        setIsOpen
+        setIsOpen,
+        hotel,
+        setHotel
     }
 }
 
@@ -106,11 +109,15 @@ export const useStatesHeader = () => {
 export const useStateForViews = () => {
     const [showTooltip, setShowTooltip] = useState(false);
     const [showTooltip_2, setShowTooltip_2] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     return {
         showTooltip,
         setShowTooltip,
         showTooltip_2,
-        setShowTooltip_2
+        setShowTooltip_2,
+        loading,
+        setLoading
+
     }
 }

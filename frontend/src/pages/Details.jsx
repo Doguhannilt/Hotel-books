@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // ICONS
@@ -13,16 +13,33 @@ import { useToast } from '@chakra-ui/react';
 // Toast
 import { toast_info_saved } from '../toast/Toast';
 
-const Details = () => {
-  
-  const navigation = useNavigate()
-  const { showTooltip, setShowTooltip, showTooltip_2, setShowTooltip_2 } = useStateForViews();
-  const toast = useToast()
+// Redux
+import { useSelector } from 'react-redux';
+import Loading from './Loading';
 
+const Details = () => {
+
+  // Redux
+  const hotel = useSelector(state => state.hotel.hotels[0]);
+
+  // useState
+  const { showTooltip, setShowTooltip, showTooltip_2, setShowTooltip_2, loading, setLoading } = useStateForViews();
+  
+  // Toast
+  const toast = useToast()
   const Save = () => {
     toast_info_saved(toast)
   }
- 
+  
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 3300);
+  }, []);
+
+    // Loading
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div className='pl-80 pr-80'>
       <div className='grid grid-cols-2'>
@@ -43,18 +60,18 @@ const Details = () => {
           { /* DESCRIPTION */}
       <div className='border  h-full w-full bg-gradient-to-r from-blue-100 to-sky-200 opacity-90 shadow-md transition-all font-medium  rounded-lg font-arial pt-12 hover:text-black hover:rounded-none'>
         <span className='text-xl'>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        {hotel.description}
         </span>
       </div>
 
           { /* CHILD AND ADULT COUNT*/}
       <div>
-        <div className='grid grid-cols-5 gap-10 font-bold font-arial mt-10 opacity-80 hover:text-black'>
+        <div className='grid grid-cols-4 gap-10 font-bold font-arial mt-10 opacity-80 hover:text-black'>
           <div className="" onMouseEnter={() => setShowTooltip_2(true)} onMouseLeave={() => setShowTooltip_2(false)}>
-            <span>A - 23 C - 23</span>
+            <span>A - {hotel.adultCount} C - {hotel.childCount}</span>
             {showTooltip_2 && (
               <div className="absolute text-gray-500 opacity-80">
-                Adult - 23 Child - 23
+                Adult - {hotel.adultCount} Child - {hotel.childCount}
               </div>
             )}
           </div>
@@ -68,7 +85,7 @@ const Details = () => {
               { /* LOCATION - COUNTRY AND CITY */}
           <div className='flex items-center'>
           <span  className='mr-2'><FaLocationArrow/></span>
-          <span> Turkey,<a href="https://www.google.com/maps?q=Ankara" target="_blank" ><u>Ankara</u></a></span>
+          <span> {hotel.country},<a href={`https://www.google.com/maps?q=${hotel.city}`} target="_blank" ><u>{hotel.city}</u></a></span>
           </div>
 
               { /* PRICE PER NIGHT */}
@@ -77,22 +94,10 @@ const Details = () => {
             {showTooltip && (
               <div className="absolute text-gray-500 opacity-80">
                 Currency: Euro<br></br>
-                Price Per Night: 12
+                Price Per Night: {hotel.pricePerNight}
               </div>
             )}
           </div>
-        </div>
-
-              { /* TYPE */}
-        <span>Budget</span>
-       
-              { /* SAVE BUTTON*/}
-        <div className='flex justify-end '>
-          <button 
-          onClick={Save}
-          className=' bg-blue-600 text-white h-10 mt-16 w-20 font-arial hover:bg-blue-800 rounded hover:rounded-none duration-500 hover:duration-500'>
-            Save it!
-          </button>
         </div>
       </div>
     </div>
