@@ -57,11 +57,11 @@ const handleLogout = async () => {
       <span className="">
         {isLoggedIn ? (
           <>
-          <div className = "flex  bg-sky-500/90 pb-4">
+          <div className = "flex  bg-sky-500/90 pb-4 font-arial">
             <Link 
-            to="/bookings" 
+            to="/info" 
             className="flex items-center  px-3 font-bold hover:bg-blue-500/20">
-              My Bookings
+              About us
             </Link>
             <Link 
             to="/my-hotels" 

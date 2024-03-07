@@ -111,6 +111,7 @@ export const useStateForViews = () => {
     const [showTooltip_2, setShowTooltip_2] = useState(false);
     const [showTooltip_3, setShowTooltip_3] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [openedDetail, isOpenedDetails] = useState(true);
 
     return {
         showTooltip,
@@ -120,6 +121,8 @@ export const useStateForViews = () => {
         loading,
         setLoading,
         showTooltip_3,
-        setShowTooltip_3
+        setShowTooltip_3,
+        openedDetail,
+        isOpenedDetails
     }
 }

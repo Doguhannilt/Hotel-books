@@ -19,11 +19,18 @@ import Loading from './Loading';
 
 const Details = () => {
 
+  // useState
+  const { showTooltip, setShowTooltip, showTooltip_2, setShowTooltip_2,showTooltip_3, setShowTooltip_3 ,loading, setLoading, openedDetail, isOpenedDetails } = useStateForViews();
+
+  // Pop up
+
+  const handleClosePopup = () => {
+    isOpenedDetails(false);
+  };
+
   // Redux
   const hotel = useSelector(state => state.hotel.hotels[0]);
 
-  // useState
-  const { showTooltip, setShowTooltip, showTooltip_2, setShowTooltip_2,showTooltip_3, setShowTooltip_3 ,loading, setLoading } = useStateForViews();
   
   // Toast
   const toast = useToast()
@@ -41,7 +48,19 @@ const Details = () => {
   }
 
   return (
-    <div className='pl-80 pr-80'>
+    <div>
+    {openedDetail && (
+      <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center  z-50 shadow ">
+        <div className="bg-gray-300  border border-gray-400 p-8 rounded-lg shadow font-arial">
+          <h2 className="text-2xl font-bold mb-4 text-center">Hey!</h2>
+          <p className="text-lg mb-4 font-arial">You can access the details by hovering the mouse cursor over the texts.</p>
+          <button onClick={handleClosePopup} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Close
+          </button>
+        </div>
+      </div>
+    )}
+    <div className='pl-20 lg:pl-60 pr-10 lg:pr-80 mt-10'>
       <div className='grid grid-cols-2'>
           
           { /* NAME */}
@@ -59,7 +78,7 @@ const Details = () => {
       </div>
 
           { /* DESCRIPTION */}
-      <div className='border  h-full w-full bg-gradient-to-r from-blue-100 to-sky-200 opacity-90 shadow-md transition-all font-medium  rounded-lg font-arial pt-12 hover:text-black hover:rounded-none'>
+      <div className='border-b-2    h-full w-full opacity-90  transition-all font-medium  rounded-lg font-arial pt-12 hover:text-black hover:rounded-none'>
         <span className='text-xl'>
         {hotel.description}
         </span>
@@ -67,7 +86,7 @@ const Details = () => {
 
           { /* CHILD AND ADULT COUNT*/}
       <div>
-        <div className='grid grid-cols-5 gap-10 font-bold font-arial mt-10 opacity-80 hover:text-black'>
+        <div className='grid  lg:grid-cols-7 gap-10 font-bold font-arial mt-10 opacity-80 hover:text-black'>
           <div className="" onMouseEnter={() => setShowTooltip_2(true)} onMouseLeave={() => setShowTooltip_2(false)}>
             <span>A - {hotel.adultCount} C - {hotel.childCount}</span>
             {showTooltip_2 && (
@@ -116,13 +135,20 @@ const Details = () => {
               </div>
             )}
           </div>
+          <div>
+            Star Rating: {hotel.starRating}
+          </div>
+
+          <div>
+            Type: {hotel.type}
+          </div>
           
       </div>
     
         </div>
     </div>
     
-      
+      </div>
  
 
   );

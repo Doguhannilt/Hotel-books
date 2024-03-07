@@ -79,12 +79,12 @@ const SearchBar = ({ onSearch }) => {
         <button
           type="button"
           onClick={handleSearch} 
-          className='w-2/3 bg-blue-600 text-white h-full p-2 font-bold text-xl hover:bg-blue-500'>
+          className='w-2/3 bg-blue-600 rounded text-white h-full p-2 font-bold text-xl hover:bg-blue-500'>
           Search
         </button>
         {/* I don't want to add any function for Clear Button, because when user click it, the button will refresh the page so it's working */}
         <button 
-        className='bg-red-600 text-white h-full p-2 font-bold text-xl lg:w-full md:w-full hover:bg-red-500'>
+        className='bg-red-600 text-white h-full  rounded p-2 font-bold text-xl lg:w-full md:w-full hover:bg-red-500'>
           Clear
         </button>
 

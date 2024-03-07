@@ -66,7 +66,7 @@ const ManageHotelForm = () => {
 
                     <span className='flex justify-end'>
                       
-                        <button type="submit" className='bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 cursor-pointer text-2xl'>
+                        <button type="submit" className='bg-blue-600 text-white h-full mb-10 w-40 rounded hover:rounded-md hover:duration-300 duration-300 p-2 font-bold hover:bg-blue-500 cursor-pointer text-2xl'>
                             Save
                         </button>
                        

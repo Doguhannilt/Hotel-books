@@ -62,7 +62,7 @@ const MainPage = () => {
         const response = await axios.get(`http://localhost:7000/views/${hotelId}`);
         const hotel = response.data;
         dispatch(addHotel(hotel)); 
-        console.log(hotel)
+       
         navigation("/view/")
     } catch (error) {
         console.error("Otel bilgisini getirirken bir hata oluştu:", error);
@@ -115,7 +115,7 @@ const MainPage = () => {
                       </button>
            
                 </div>
-               <div className='flex gap-4'>
+               <div className='flex gap-4 mt-2'>
                 <span className = "text-base font-normal">
                  <b>Adult Count:</b> {post.adultCount} -  <b>Child Count:</b> {post.childCount}
                  </span>
