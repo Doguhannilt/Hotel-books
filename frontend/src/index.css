@@ -21,9 +21,22 @@
     }
   }
 
+  @keyframes slideLeftMain {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-10%);
+    }
+  }
+
+
   .animate-slide-right {
     animation: slideRight 1s forwards;
   }
   .animate-slide-left {
     animation: slideLeft 1s forwards;
+  }
+  .animate-slide-left-main {
+    animation: slideLeftMain 1s forwards;
   }

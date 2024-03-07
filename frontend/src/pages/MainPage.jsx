@@ -102,7 +102,7 @@ const MainPage = () => {
           // Post
           <div key={post.id} className="grid grid-cols-1 xl:grid-cols-[1fr_3fr] border  rounded-lg p-10 gap-8 pl-60 ">
             <div className="w-[500px] h-[240px] mt-10 ">
-              <img src={post.imageUrls} alt={post.name} className=" rounded w-full h-full object-cover object-center hover:transform hover:translate-x-2 hover:translate-y-2 duration-300" />
+              <img src={post.imageUrls} alt={post.name} className="rounded w-full h-full object-cover object-center hover:transform hover:translate-x-2 hover:translate-y-2 duration-300" />
             </div>
             <div className="flex flex-col justify-start mt-12 " key={post.id}>
               <div className='text-3xl font-bold font-serif flex flex-col'>
