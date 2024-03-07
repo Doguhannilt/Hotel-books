@@ -32,7 +32,7 @@ const userRoutes = require( './src/routes/Users')
 const authRoutes = require('./src/routes/auth')
 const myHotelRoutes = require("./src/routes/My-hotels")
 const HotelRoutes = require("./src/routes/Hotels")
-
+const viewRoutes = require("./src/routes/Views")
 
 // MONGODB CONNECTION
 mongoose.connect(process.env.MONGODB_CONNECTION)
@@ -65,6 +65,9 @@ app.use("/my-hotels", myHotelRoutes)
 
 // Hotels (All public)
 app.use("/hotels", HotelRoutes)
+
+// Views
+app.use("/", viewRoutes)
 
 {authorization: `bearer {token}`}
 // Auth endpoint

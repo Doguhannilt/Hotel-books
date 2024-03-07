@@ -4,12 +4,16 @@ import SearchBar from './SearchBar';
 
 // useState
 import { useStatesForMainPage } from '../Hooks/Hooks';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
 const MainPage = () => {
   
   const { posts, setPosts, loading, setLoading, filters, setFilters, isOpen, setIsOpen} = useStatesForMainPage()
-  
+  const navigation = useNavigate()
+     {/* useState */}
+  const [ hotel, setHotel] = useState()
+
   // Search Form
   const handleSearch = (searchFilters) => {
     setFilters(searchFilters);
@@ -32,10 +36,31 @@ const MainPage = () => {
     }
   };
 
+
   useEffect(() => { 
     fetchData();
   }, [filters]); 
 
+  axios.defaults.withCredentials = true;
+
+  const { id } = useParams();
+
+
+
+  // Tıklanan otelin ID'sini alarak detayları getiren fonksiyon
+  const viewHotelDetails = async (hotelId) => {
+    try {
+      const response = await axios.get(`http://localhost:7000/views/${hotelId}`);
+      console.log(response)
+      setHotel(response.data)
+      console.log(hotel._id)
+      console.log(hotelId)
+      navigation()
+      
+    } catch (error) {
+      console.error("Otel bilgisini getirirken bir hata oluştu:", error);
+    }
+  };
 
   if (loading) return <div>Loading...</div>;
 
@@ -76,7 +101,11 @@ const MainPage = () => {
                 <div className='flex '>
                 <h1>{post.name}</h1>
                 <span className='ml-6'>-</span>
-                <button className = "ml-8 bg-blue-600 text-white font-thin rounded text-xl w-1/5 hover:bg-blue-500 mb-2">View Details</button>
+                      <button onClick={() => viewHotelDetails(post._id)} 
+                      className="ml-8 bg-blue-600 text-white font-thin rounded text-xl  hover:bg-blue-500 mb-2">
+                        View Details
+                      </button>
+           
                 </div>
                <div className='flex gap-4'>
                 <span className = "text-xl font-normal">

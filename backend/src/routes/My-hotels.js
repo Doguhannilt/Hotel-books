@@ -3,6 +3,9 @@ const express = require("express")
 const router = express.Router()
 const cloudinary = require("cloudinary").v2;
 
+const {e_logger} = require('../utils/error_logger')
+
+
 /* Multer is a node.js middleware for handling multipart/form-data ,
  which is primarily used for uploading files. It is written on top of 
  busboy for maximum efficiency. 
@@ -64,7 +67,7 @@ router.post("/", verifyToken,[
             // 4. Return a 201 status
             res.status(201).send(hotel)
         } catch (err) {
-            console.log(`The error is happened in My-Hotels ${err}`)
+          e_logger.error(`my-hotels error is occured -> ${err}`)
         }
 })
 
@@ -75,7 +78,7 @@ router.get("/", verifyToken, async(req,res) => {
     res.json(hotels)
     }
     catch(err) {
-        console.log(err) 
+      e_logger.error(`GET main error is occured -> ${err}`)
         res.status(500).json({message:"Error fetching hotels"})}
 })
 
@@ -90,7 +93,7 @@ router.delete("/delete/:id", verifyToken, async (req, res) => {
       }
       res.json({ message: "Hotel deleted successfully" });
     } catch (err) {
-      console.error("Delete system error ->", err);
+      e_logger.error(`delete-hotel error is occured -> ${err}`)
       res.status(500).json({ message: "Error deleting hotel" });
     }
   });
@@ -112,7 +115,7 @@ router.delete("/delete/:id", verifyToken, async (req, res) => {
   
       res.json({ message: "Hotel updated successfully", hotel: updatedHotel });
     } catch (err) {
-      console.error("Update hotel error ->", err);
+      e_logger.error(`update-hotel error is occured -> ${err}`)
       res.status(500).json({ message: "Error updating hotel" });
     }
   });
@@ -133,10 +136,13 @@ router.delete("/delete/:id", verifyToken, async (req, res) => {
         }
         res.json(hotel);
     } catch (err) {
-        console.log(err);
+      e_logger.error(`edit-hotel error is occured -> ${err}`)
         res.status(500).json({ message: "Error fetching hotel" });
     }
 });
+
+
+
 
 
 module.exports = router;

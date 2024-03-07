@@ -84,7 +84,7 @@ const Details = () => {
         </div>
 
               { /* TYPE */}
-          <span>Budget</span>
+        <span>Budget</span>
        
               { /* SAVE BUTTON*/}
         <div className='flex justify-end '>
