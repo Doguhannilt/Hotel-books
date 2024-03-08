@@ -245,4 +245,4 @@ I would like to extend my heartfelt gratitude to the following individuals whose
 <li><a href = "https://www.youtube.com/@HiteshChoudharydotcom">Hitesh Choudhary</li>
 </lu>
 <br>
-and the valuable Turkish community of <a href = "https://discord.gg/kampus">Kamp.us</a>
+and the valuable Turkish community of <a href = "https://discord.gg/kampus">kamp.us</a>
