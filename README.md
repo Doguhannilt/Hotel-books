@@ -20,7 +20,7 @@ Feel free to explore the "Hotel Books" project and experience the seamless booki
 
 ### Project Features
 
-- User account management, including features for signing in, registering, and editing profiles.
+- User account management, including features for signing in, and registering.
 - Automatic logout for logged-in users.
 - Validation processes for sign-in and registration forms.
 - Ability for users to search for hotels without logging in.
